@@ -15,7 +15,7 @@ module ActiveStorage
     # - Handling MiniMagick not being installed
     #
     # https://github.com/rails/rails/blob/master/activestorage/lib/active_storage/analyzer/image_analyzer.rb
-    class Analyzer < ActiveStorage::Analyzer::ImageAnalyzer
+    class Analyzer < ActiveStorage::Analyzer::ImageAnalyzer::Vips
       def metadata
         { exif: read_image(&:exif) }
       end
