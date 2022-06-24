@@ -17,7 +17,7 @@ module ActiveStorage
     # https://github.com/rails/rails/blob/master/activestorage/lib/active_storage/analyzer/image_analyzer.rb
     class Analyzer < ActiveStorage::Analyzer::ImageAnalyzer::Vips
       def metadata
-        { exif: read_image(&:exif) }
+        { exif: read_image { |i| i.get_fields.grep(/exif-if/).to_h {|v| [v, i.get(v)]} } }
       end
     end
   end
